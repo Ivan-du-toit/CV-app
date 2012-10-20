@@ -50,7 +50,7 @@ class CV extends CI_Controller {
 		$this->load->view('about_view');
 	}
 	
-	public function project() {
+	/*public function project() {
 		if ($this->uri->segment(3) === false)
 			$this->load->view('project_view');
 		else {
@@ -60,5 +60,5 @@ class CV extends CI_Controller {
 				$viewData['data']['items'] = $this->CVModel->loadProjectMeta($this->uri->segment(3), $this->uri->segment(4));
 			$this->load->view('json_view', $viewData);
 		}
-	}
+	}*/
 }
