@@ -73,3 +73,9 @@ items li {
 .label a:hover {
 	color: lightblue;
 }
+
+img.link-icon {
+	width: 16px;
+	height: 16px;
+	padding: 5px;
+}

@@ -1,5 +1,5 @@
 <h3>PERSONAL DETAILS</h3><br/>
-<div class="details">
+<div class="details" ng-mouseenter="$scope.showlinks = true;" ng-mouseleave="$scope.showlinks = false;">
 	<table>
 		<tr><td>Full Names: </td><td>Ivan du Toit</td></tr>
 		<tr><td>Nationality: </td><td>South African</td></tr>
@@ -9,6 +9,13 @@
 		<tr><td>Cell: </td><td>(+27)760926242</td></tr>
 		<tr><td>E-Mail: </td><td>{{email}}</td></tr>
 	</table>
+	<span ng-show="$scope.showlinks">
+		<a href="http://github.com/ivan-du-toit"><img src="img/github.ico" class="link-icon"/>Github Profile</a>
+		<a href="http://ivandutoit.blogspot.com/"><img src="img/blogger.ico" class="link-icon"/>Blog</a>
+		<a href="http://plus.google.com/109733145121386015159"><img src="img/googleplus.ico" class="link-icon"/>Google Plus Profile</a>
+		<a href="http://www.linkedin.com/profile/view?id=47091934"><img src="img/linkedin.ico" class="link-icon"/>Linkedin Profile</a>
+		
+	</span>
 </div>
 <br/>
 <div>
