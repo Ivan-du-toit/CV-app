@@ -47,7 +47,18 @@ class CV extends CI_Controller {
 	}
 	
 	public function about() {
+		
 		$this->load->view('about_view');
+	}
+	
+	public function search() {
+		if ($this->uri->segment(3) === false)
+			$this->load->view('search_view');
+		else {
+			$viewData = array();
+			$viewData['data'] = $this->CVModel->search($this->uri->segment(3));
+			$this->load->view('json_view', $viewData);
+		}
 	}
 	
 	/*public function project() {

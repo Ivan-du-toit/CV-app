@@ -16,6 +16,8 @@
 		<a href="http://www.linkedin.com/profile/view?id=47091934"><img src="img/linkedin.ico" class="link-icon"/>Linkedin Profile</a>
 		
 	</span>
+                                            
+
 </div>
 <br/>
 <div>

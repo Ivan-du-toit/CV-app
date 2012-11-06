@@ -88,6 +88,52 @@ class CVModel extends CI_Model {
 		}
 		return $metaData;
 	}
+	
+	public function search($term) {
+		$safeTerm = $this->db->escape('%'.$term.'%');
+		$result = array();
+                $result['occupation'] = $this->occupationSearch($safeTerm);
+		$result['project'] = $this->projectSearch($safeTerm);
+		$result['meta'] = $this->metaSearch($safeTerm);
+		return $result;
+	}
+	
+	private function occupationSearch($term) {
+		$query = $this->db->query("SELECT * FROM occupation WHERE name LIKE {$term} OR description LIKE {$term}");
+		$occupationData = $query->result();
+		foreach ($occupationData as $occupation) {
+			$occupation->related = $this->loadOccupationRelatedCategories($occupation->id);
+		}
+		return $occupationData;
+	}
+	
+	private function projectSearch($term) {
+		$query = $this->db->query("SELECT * FROM project WHERE name LIKE {$term} OR description LIKE {$term}");
+		$projectData = $query->result();
+		foreach ($projectData as $project) {
+			$project->related = $this->loadProjectRelatedCategories($project->id);
+		}
+		return $projectData;
+	}
+	
+	private function metaSearch($term) {
+		$query = $this->db->query("SELECT * FROM meta WHERE name LIKE {$term} OR description LIKE {$term}");
+		$metaData = $query->result();
+		foreach ($metaData as $meta) {
+			$meta->related = $this->loadMetaRelatedCategories($meta->id);
+		}
+		return $metaData;
+	}
+        
+        public function loadProjectRelatedCategories($projectID) {
+		$query = $this->db->query("SELECT category.category as name, category.id as id FROM category 
+			LEFT JOIN meta_category on meta_category.category = category.id
+			LEFT JOIN meta on meta.id = meta_category.meta
+			LEFT JOIN project_meta on meta.id = project_meta.meta
+			LEFT JOIN project on project.id = project_meta.project
+			WHERE project.id = {$this->db->escape($projectID)} GROUP BY name");
+		return $query->result();
+	}
 }
 
 ?>

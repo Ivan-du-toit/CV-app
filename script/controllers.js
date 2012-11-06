@@ -18,9 +18,8 @@ function cronicalCtrl($scope, $http) {
 	});
 	
 	var n = "Ivan";
-	var s = "dtoit";
 	var a = '\u0040';
-	$scope.email = n+s+a+"gmail.com";
+	$scope.email = n+a+"tryfinally.co.za";
 }
 
 function JobCategoryCtrl($scope, $http, $routeParams) {
@@ -39,5 +38,16 @@ function categoryCtrl($scope, $http, $routeParams) {
 	
 	$http.get('cv/category/'+$scope.catId).success(function(data) {
 		$scope.items = data;
+	});
+}
+
+function searchCtrl($scope, $http, $routeParams) {
+	$scope.term = $routeParams.term;
+	
+	$http.get('cv/search/'+$scope.term).success(function(data) {
+            $scope.items = data;
+            $scope.occupations = data.occupation;
+            $scope.projects = data.project;
+            $scope.metas = data.meta;
 	});
 }
