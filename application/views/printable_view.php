@@ -28,8 +28,21 @@
 			<span class="occ_date">{{occupation.start_date}} to {{(occupation.end_date == null) && 'Current' || occupation.end_date}}</span>
 			<span ng-show="occupation.show">
 				<span class="relatedCategory label label-info" ng-repeat="category in occupation.related"><a href="#/occupation/{{occupation.id}}/{{category.id}}">{{category.name}}</a></span>
+				<span class="relatedCategory label label-info" ng-repeat="project in occupation.projects"><a href="#/project/{{project.id}}/">{{project.name}}</a></span>
 			</span>
 			<p class="desc" ng-bind-html-unsafe="occupation.description"></p>
+		</li>
+	</ul>
+	
+	<h2 class="sub_title">Projects</h2>
+	<ul class="items">
+		<li class="thumbnail" ng-repeat="project in projects" ng-mouseenter="projects[$index].show = true;" ng-mouseleave="projects[$index].show = false;">
+			<span class="item_title">{{project.name}}</span>
+			<span ng-show="project.show">
+				<span class="relatedCategory label label-info" ng-repeat="category in project.related"><a href="#/project/{{project.id}}/{{category.id}}">{{category.name}}</a></span>
+				<span class="relatedCategory label label-info" ng-repeat="job in project.occupation"><a href="#/occupation/{{job.id}}/{{category.id}}">{{job.name}}</a></span>
+			</span>
+			<p class="desc" ng-bind-html-unsafe="project.description"></p>
 		</li>
 	</ul>
 

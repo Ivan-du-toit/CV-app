@@ -10,9 +10,9 @@ class CV extends CI_Controller {
 		$this->load->view('template_view');
 	}
 	
-	public function cronological() {
+	public function printable() {
 		$viewData = array();
-		$this->load->view('cronological_view');
+		$this->load->view('printable_view');
 	}
 	
 	public function category() {
@@ -36,18 +36,18 @@ class CV extends CI_Controller {
 		}
 	}
 		
-	public function cron() {
+	public function printData() {
 		$viewData = array();
 		$viewData['data'] = array(
 			'occupations' => $this->CVModel->loadOccupations(),
 			'refs' => $this->CVModel->loadMetaCategory('References'),
+                        'projects' => $this->CVModel->loadProjects(),
 			'achievements' => $this->CVModel->loadMetaCategory('Achievements')
 		);
 		$this->load->view('json_view', $viewData);
 	}
 	
 	public function about() {
-		
 		$this->load->view('about_view');
 	}
 	
@@ -61,15 +61,15 @@ class CV extends CI_Controller {
 		}
 	}
 	
-	/*public function project() {
+	public function project() {
 		if ($this->uri->segment(3) === false)
 			$this->load->view('project_view');
 		else {
-			
-			$viewData['data'] = array('project' => $this->CVModel->loadProject($this->uri->segment(3)));
+			$project = $this->CVModel->loadProject($this->uri->segment(3));
+			$viewData['data'] = array('project' => $project[0], 'items' => '');
 			if ($this->uri->segment(4) !== false)
-				$viewData['data']['items'] = $this->CVModel->loadProjectMeta($this->uri->segment(3), $this->uri->segment(4));
+				 $viewData['data']['items'] = $this->CVModel->loadProjectMetaCategory($this->uri->segment(3), $this->uri->segment(4));
 			$this->load->view('json_view', $viewData);
 		}
-	}*/
+	}
 }

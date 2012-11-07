@@ -3,7 +3,7 @@
 -- Server version:               5.5.27 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-10-20 20:56:33
+-- Date/time:                    2012-11-07 14:00:41
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -30,8 +30,9 @@ CREATE TABLE IF NOT EXISTS `meta` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `description` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  FULLTEXT KEY `description` (`description`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 
@@ -55,8 +56,9 @@ CREATE TABLE IF NOT EXISTS `occupation` (
   `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
   `type` enum('Education','Job') NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  FULLTEXT KEY `description` (`description`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 
@@ -66,6 +68,36 @@ CREATE TABLE IF NOT EXISTS `occupation_meta` (
   `occupation` int(10) unsigned NOT NULL,
   `meta` int(10) unsigned NOT NULL,
   PRIMARY KEY (`meta`,`occupation`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+
+
+-- Dumping structure for table cv.project
+CREATE TABLE IF NOT EXISTS `project` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id`),
+  FULLTEXT KEY `description` (`description`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+
+
+-- Dumping structure for table cv.project_meta
+CREATE TABLE IF NOT EXISTS `project_meta` (
+  `project` int(10) unsigned NOT NULL,
+  `meta` int(10) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+
+
+-- Dumping structure for table cv.project_occupation
+CREATE TABLE IF NOT EXISTS `project_occupation` (
+  `project` int(10) unsigned NOT NULL,
+  `occupation` int(10) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.

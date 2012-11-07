@@ -1,4 +1,4 @@
-function cronicalCtrl($scope, $http) {
+function printableCtrl($scope, $http) {
 	$scope.showRelated = function(id) {
 		$scope.occupations[id].show = true;
 	}
@@ -11,10 +11,11 @@ function cronicalCtrl($scope, $http) {
 		alert(id);
 	}
 	
-	$http.get('cv/cron').success(function(data) {
+	$http.get('cv/printData').success(function(data) {
 		$scope.occupations = data.occupations;
 		$scope.refs = data.refs;
 		$scope.achievements = data.achievements;
+		$scope.projects = data.projects;
 	});
 	
 	var n = "Ivan";
@@ -23,10 +24,10 @@ function cronicalCtrl($scope, $http) {
 }
 
 function JobCategoryCtrl($scope, $http, $routeParams) {
-	$scope.catId = $routeParams.catId;
-	$scope.jobId = $routeParams.occId;
+	$scope.catID = $routeParams.catID;
+	$scope.jobID = $routeParams.occID;
 
-	$http.get('cv/jobdetail/'+$scope.jobId+'/'+$scope.catId).success(function(data) {
+	$http.get('cv/jobdetail/'+$scope.jobID+'/'+$scope.catID).success(function(data) {
 		$scope.occupations = data.occupations;
 		$scope.items = data.items;
 	});
@@ -34,9 +35,9 @@ function JobCategoryCtrl($scope, $http, $routeParams) {
 
 
 function categoryCtrl($scope, $http, $routeParams) {
-	$scope.catId = $routeParams.catId;
+	$scope.catID = $routeParams.catID;
 	
-	$http.get('cv/category/'+$scope.catId).success(function(data) {
+	$http.get('cv/category/'+$scope.catID).success(function(data) {
 		$scope.items = data;
 	});
 }
@@ -45,9 +46,19 @@ function searchCtrl($scope, $http, $routeParams) {
 	$scope.term = $routeParams.term;
 	
 	$http.get('cv/search/'+$scope.term).success(function(data) {
-            $scope.items = data;
-            $scope.occupations = data.occupation;
-            $scope.projects = data.project;
-            $scope.metas = data.meta;
+		$scope.items = data;
+		$scope.occupations = data.occupation;
+		$scope.projects = data.project;
+		$scope.metas = data.meta;
+	});
+}
+
+function projectCtrl($scope, $http, $routeParams) {
+	$scope.projectID = $routeParams.projectID;
+	$scope.catID = $routeParams.catID;
+	
+	$http.get('cv/project/'+$scope.projectID+'/'+$scope.catID).success(function(data) {
+		$scope.project = data.project;
+        $scope.items = data.items;
 	});
 }

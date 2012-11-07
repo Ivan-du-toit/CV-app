@@ -5,8 +5,5 @@
 <h3>TODO List:</h3>
 <p>Things that I want to add or improve on the CV.</p>
 <ul>
-	<li>Add search functionality.</li>
-	<li>Promote Projects to first class like occupations to include categories.</li>
 	<li>Refactor the server side to work like an API.</li>
-	<li>Add more formating to different categories like  references.</li>
 </ul>

@@ -4,7 +4,8 @@
 		<span class="item_title">{{item.name}}</span>
 		<span ng-show="item.show">
 			<span class="relatedCategory label label-info" ng-repeat="category in item.related"><a href="#/category/{{category.id}}">{{category.name}}</a></span>
-			<span class="relatedCategory label label-info" ng-repeat="job in item.occupations"><a href="#/occupation/{{job.id}}/{{catId}}">{{job.name}}</a></span>
+			<span class="relatedCategory label label-info" ng-repeat="job in item.occupations"><a href="#/occupation/{{job.id}}/{{catID}}">{{job.name}}</a></span>
+			<span class="relatedCategory label label-info" ng-repeat="project in item.projects"><a href="#/project/{{project.id}}/{{catID}}">{{project.name}}</a></span>
 		</span>
 		<p class="desc" ng-bind-html-unsafe="item.description"></p>
 	</li>
