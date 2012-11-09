@@ -7,15 +7,18 @@ class CV extends CI_Controller {
 	}
 
 	public function index() {
+		$this->output->cache(120);
 		$this->load->view('template_view');
 	}
 	
 	public function printable() {
+		$this->output->cache(120);
 		$viewData = array();
 		$this->load->view('printable_view');
 	}
 	
 	public function category() {
+		$this->output->cache(10);
 		if ($this->uri->segment(3) === false)
 			$this->load->view('category_view');
 		else {
@@ -25,6 +28,7 @@ class CV extends CI_Controller {
 	}
 	
 	public function jobdetail() {
+		$this->output->cache(10);
 		if ($this->uri->segment(3) === false)
 			$this->load->view('jobDetail_view');
 		else {
@@ -37,6 +41,7 @@ class CV extends CI_Controller {
 	}
 		
 	public function printData() {
+		$this->output->cache(10);
 		$viewData = array();
 		$viewData['data'] = array(
 			'occupations' => $this->CVModel->loadOccupations(),
@@ -48,13 +53,15 @@ class CV extends CI_Controller {
 	}
 	
 	public function about() {
+		$this->output->cache(120);
 		$this->load->view('about_view');
 	}
 	
 	public function search() {
-		if ($this->uri->segment(3) === false)
+		if ($this->uri->segment(3) === false) {
+			$this->output->cache(10);
 			$this->load->view('search_view');
-		else {
+		} else {
 			$viewData = array();
 			$viewData['data'] = $this->CVModel->search($this->uri->segment(3));
 			$this->load->view('json_view', $viewData);
@@ -62,6 +69,7 @@ class CV extends CI_Controller {
 	}
 	
 	public function project() {
+		$this->output->cache(10);
 		if ($this->uri->segment(3) === false)
 			$this->load->view('project_view');
 		else {
