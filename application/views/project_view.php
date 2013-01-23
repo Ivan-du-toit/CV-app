@@ -3,7 +3,8 @@
 		<span class="item_title">{{project.name}}</span>
 		<span ng-show="project.show">
 			<span class="relatedCategory label label-info" ng-repeat="category in project.related"><a href="#/project/{{project.id}}/{{category.id}}">{{category.name}}</a></span>
-			<span class="relatedCategory label label-info"><a href="#/occupation/{{project.occupation[0].id}}/">{{project.occupation[0].name}}</a></span>
+			<!--span class="relatedCategory label label-info"><a href="#/occupation/{{project.occupation[0].id}}/">{{project.occupation[0].name}}</a></span-->
+			<span class="relatedCategory label label-info" ng-repeat="job in project.occupation"><a href="#/occupation/{{job.id}}/{{category.id}}">{{job.name}}</a></span>
 		</span>
 		<p class="desc" ng-bind-html-unsafe="project.description"></p>
 		<div ng-hide="items.length == 0">

@@ -159,8 +159,9 @@ class CVModel extends CI_Model {
 		$projects = $query->result();
 		foreach ($projects as $index => $project) {
 			$projects[$index]->related = $this->loadProjectRelatedCategories($project->id);
-			$projects[$index]->occupation = $this->loadProjectOccupations($project->id);
-			var_dump($projects[$index]->occupation);
+			$occupation  = $this->loadProjectOccupations($project->id);
+			if ($occupation != null)
+				$projects[$index]->occupation = $occupation;
 		}
         return $projects;
 	}
