@@ -160,6 +160,7 @@ class CVModel extends CI_Model {
 		foreach ($projects as $index => $project) {
 			$projects[$index]->related = $this->loadProjectRelatedCategories($project->id);
 			$projects[$index]->occupation = $this->loadProjectOccupations($project->id);
+			var_dump($projects[$index]->occupation);
 		}
         return $projects;
 	}
@@ -169,7 +170,10 @@ class CVModel extends CI_Model {
 			LEFT JOIN project_occupation on project.id = project_occupation.project
 			LEFT JOIN occupation on occupation.id = project_occupation.occupation
 			WHERE project.id = {$this->db->escape($projectID)}");
-		return $query->result();
+			$occupation = $query->result();
+		if ($occupation[0] == null || $occupation[0]->id == null)
+			return null;
+		return $occupation;
 	}
 	
 	public function loadProjectMetaCategory($projectID, $categoryID) {

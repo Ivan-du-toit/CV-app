@@ -41,7 +41,7 @@ class CV extends CI_Controller {
 	}
 		
 	public function printData() {
-		$this->output->cache(10);
+		//$this->output->cache(10);
 		$viewData = array();
 		$viewData['data'] = array(
 			'occupations' => $this->CVModel->loadOccupations(),

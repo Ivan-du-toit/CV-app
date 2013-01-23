@@ -6,4 +6,6 @@
 <p>Things that I want to add or improve on the CV.</p>
 <ul>
 	<li>Refactor the server side to work like an API.</li>
+	<li>Allow the user to add categories to the printable CV by url so that it can be linked to.</li>
+	<li>Move the education section out of occupation.</li>
 </ul>
